@@ -182,19 +182,29 @@ body {
 @media (max-width: 768px) {
     /* For mobile landscape */
     #timeline-container {
-        max-width: 600px;
+        max-width: 100%; /* Make it full-width */
+        padding: 10px;
     }
 
     .timeline-item {
         width: 100%; /* Full-width for mobile devices */
-        text-align: center;
+        text-align: center; /* Center align text */
         padding-left: 0;
         padding-right: 0;
+        position: relative; /* Ensures proper positioning of the dot */
+        margin: 20px 0;
     }
 
     .timeline-item::before {
-        left: 50%; /* Center the connector circles */
-        transform: translateX(-50%) translateY(-50%);
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #4CAF50, #81C784);
+        top: 50%;
+        left: 50%; /* Center dot */
+        transform: translate(-50%, -50%); /* Ensure dot is centered */
     }
 }
 
@@ -207,24 +217,26 @@ body {
 
     .timeline-item {
         width: 100%; /* Full-width for mobile portrait */
-        text-align: center;
+        text-align: center; /* Center align text */
         padding-left: 0;
         padding-right: 0;
-    }
-
-    .timeline-item:nth-child(even) {
-        left: 0;
-    }
-
-    .timeline-item:nth-child(odd) {
-        left: 0;
+        position: relative; /* Ensures proper positioning of the dot */
+        margin: 20px 0;
     }
 
     .timeline-item::before {
-        left: 50%; /* Center the connector circles */
-        transform: translateX(-50%) translateY(-50%);
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #4CAF50, #81C784);
+        top: 50%;
+        left: 50%; /* Center dot */
+        transform: translate(-50%, -50%); /* Ensure dot is centered */
     }
 }
+
 
 /* Timeline Item Hover Effect */
 .timeline-item:hover {
@@ -418,7 +430,38 @@ nav a.active {
         margin-bottom: 10px; /* Space between the month name and buttons */
     }
 }
+@media (max-width: 768px) {
+    .day {
+        display: grid;
+        grid-template-columns: 1fr; /* Single column for days */
+        gap: 5px; /* Reduced gap */
+    }
 
+    .day .day-number {
+        font-size: 14px; /* Make the font smaller on mobile */
+    }
+
+    /* Adjusting the events layout */
+    .day .event {
+        font-size: 12px; /* Smaller font for events */
+    }
+}
+
+/* Portrait Mobile */
+@media (max-width: 480px) {
+    .day {
+        grid-template-columns: 1fr; /* Still single column */
+        gap: 5px; /* Reduced gap for small screens */
+    }
+
+    .day .day-number {
+        font-size: 12px; /* Make the font even smaller for portrait mode */
+    }
+
+    .day .event {
+        font-size: 10px; /* Smaller font for events on portrait mode */
+    }
+}
 /* Jump button styling */
 #jump-button {
     background-color: #2196F3; /* Blue background */
