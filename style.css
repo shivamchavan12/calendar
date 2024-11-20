@@ -117,20 +117,23 @@ body {
     position: relative;
     margin: 20px 0;
     width: 45%; /* Adjust width to allow for two items side by side */
-    text-align: left;
     padding: 10px 20px;
     background: white;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
 
+/* Adjust text alignment for odd and even timeline items */
 .timeline-item:nth-child(even) {
     left: 55%; /* Shift even items to the right */
-    text-align: right;
+    text-align: center;
 }
 
 .timeline-item:nth-child(odd) {
     left: 0; /* Keep odd items on the left */
+    text-align: center;
 }
 
 /* Connector Circles */
@@ -222,6 +225,7 @@ body {
         transform: translateX(-50%) translateY(-50%);
     }
 }
+
 /* Timeline Item Hover Effect */
 .timeline-item:hover {
     background: #e8f5e9; /* Light green background on hover */
@@ -394,7 +398,11 @@ nav a.active {
     }
 
     .day {
-        width: calc(14.2857% - 20px); 
+        display: grid;
+        grid-template-columns: repeat(7, 1fr); /* Ensures 7 equal columns */
+        gap: 10px;
+        justify-items: center;  /* Horizontally center the content */
+        align-items: center;    /* Vertically center the content */
     }
 
     .event {
