@@ -3,23 +3,28 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background: #f9f9f9;
+    background: #fff7f0; /* Light peachy warm background */
     color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Header */
 .header {
-    background: linear-gradient(45deg, #4CAF50, #81C784);
+    background: linear-gradient(145deg, #ff7e5f, #feb47b); /* Warm gradient */
     color: white;
-    padding: 20px;
+    padding: 25px;
     text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-bottom: 4px solid #ff7043;
 }
 
 .header h1 {
     margin: 0;
+    font-size: 38px;
+    font-weight: 700;
 }
 
-/* Navigation Styling */
+/* Navigation */
 nav {
     text-align: center;
     margin-top: 20px;
@@ -28,313 +33,159 @@ nav {
 nav a {
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     margin: 0 15px;
-    background-color: #4CAF50;
+    background-color: #ff7043; /* Rich orange */
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 17px;
     display: inline-block;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 nav a.active {
-    background-color: #388E3C;
+    background-color: #f4511e; /* Slightly darker */
     font-weight: bold;
 }
 
 nav a:hover {
-    background-color: #45a049;
+    background-color: #f44336;
     transform: translateY(-2px);
 }
 
 /* Timeline Section */
 .timeline-section {
-    padding: 20px;
+    padding: 30px;
     max-width: 1200px;
     margin: 0 auto;
-    background: linear-gradient(to bottom, #e8f5e9, #f1f8e9);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff3e0; /* Soft gradient */
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     animation: fadeIn 1s ease-in-out;
 }
 
-/* Fade-in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Timeline Line */
-
-/* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f9f9f9;
-    color: #333;
-}
-
-/* Header */
-.header {
-    background: linear-gradient(45deg, #4CAF50, #81C784);
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.header h1 {
-    margin: 0;
-}
-
-/* Timeline Container */
 #timeline-container {
     position: relative;
     margin: 0 auto;
-    padding: 20px 0;
-    max-width: 800px;
+    padding: 30px 0;
+    max-width: 850px;
 }
 
 #timeline-container::before {
     content: '';
     position: absolute;
     width: 4px;
-    background: linear-gradient(to bottom, #4CAF50, #388E3C);
+    background: #ff7043;
     top: 0;
     bottom: 0;
-    left: 50%; /* Center the line */
+    left: 50%;
     transform: translateX(-50%);
 }
 
 /* Timeline Items */
 .timeline-item {
     position: relative;
-    margin: 20px 0;
-    width: 45%; /* Adjust width to allow for two items side by side */
-    padding: 10px 20px;
+    margin: 25px 0;
+    width: 45%;
+    padding: 20px;
     background: white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
     text-align: center;
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    transition: all 0.3s ease;
+    border: 2px solid #ff7043;
 }
 
-/* Adjust text alignment for odd and even timeline items */
 .timeline-item:nth-child(even) {
-    left: 55%; /* Shift even items to the right */
-    text-align: center;
+    left: 55%;
+    text-align: left;
 }
 
 .timeline-item:nth-child(odd) {
-    left: 0; /* Keep odd items on the left */
-    text-align: center;
+    left: 0;
+    text-align: right;
 }
 
-/* Connector Circles */
 .timeline-item::before {
     content: '';
     position: absolute;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: linear-gradient(45deg, #4CAF50, #81C784);
-    top: 50%; /* Align with the center of the item */
-    left: -10px; /* Position the dot at the center of the line */
+    background: #ff7043;
+    top: 50%;
+    left: -12px;
     transform: translateY(-50%);
 }
 
 .timeline-item:nth-child(even)::before {
     left: auto;
-    right: -10px; /* Position dot for the right-side items */
+    right: -12px;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-    /* For tablets and smaller screens */
-    #timeline-container {
-        max-width: 700px;
-    }
-
-    .timeline-item {
-        width: 50%; /* Adjust width to fit more items in the same row */
-    }
-
-    .timeline-item:nth-child(even) {
-        left: 50%;
-        text-align: left;
-    }
-
-    .timeline-item:nth-child(odd) {
-        left: 0;
-    }
-
-    .timeline-item::before {
-        left: -10px;
-    }
-}
-
-@media (max-width: 768px) {
-    /* For mobile landscape */
-    #timeline-container {
-        max-width: 100%; /* Make it full-width */
-        padding: 10px;
-    }
-
-    .timeline-item {
-        width: 100%; /* Full-width for mobile devices */
-        text-align: center; /* Center align text */
-        padding-left: 0;
-        padding-right: 0;
-        position: relative; /* Ensures proper positioning of the dot */
-        margin: 20px 0;
-    }
-
-    .timeline-item::before {
-        content: '';
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: linear-gradient(45deg, #4CAF50, #81C784);
-        top: 50%;
-        left: 50%; /* Center dot */
-        transform: translate(-50%, -50%); /* Ensure dot is centered */
-    }
-}
-
-@media (max-width: 480px) {
-    /* For mobile portrait */
-    #timeline-container {
-        max-width: 100%;
-        padding: 10px;
-    }
-
-    .timeline-item {
-        width: 100%; /* Full-width for mobile portrait */
-        text-align: center; /* Center align text */
-        padding-left: 0;
-        padding-right: 0;
-        position: relative; /* Ensures proper positioning of the dot */
-        margin: 20px 0;
-    }
-
-    .timeline-item::before {
-        content: '';
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: linear-gradient(45deg, #4CAF50, #81C784);
-        top: 50%;
-        left: 50%; /* Center dot */
-        transform: translate(-50%, -50%); /* Ensure dot is centered */
-    }
-}
-
-
-/* Timeline Item Hover Effect */
 .timeline-item:hover {
-    background: #e8f5e9; /* Light green background on hover */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow for focus */
-    transform: translateY(-5px); /* Slightly lift the item on hover */
-    transition: all 0.3s ease; /* Smooth transition */
+    background-color: #e8f5e9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
 }
 
-/* Calendar Styles */
-/* Global Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
 
-/* Header Styles */
-.header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-}
-
-/* Active link styles */
-nav a.active {
-    text-decoration: underline;
-}
-
-/* Calendar Container */
+/* Calendar Section */
 .calendar-container {
     max-width: 900px;
     margin: 40px auto;
-    padding: 20px;
-    background: #ffffff;
+    padding: 30px;
+    background: #fff3e0;
     border-radius: 15px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
     display: flex;
     flex-direction: column;
-    position: relative; /* Allows positioning of the buttons inside the container */
-    height: auto; /* Ensure the container grows based on content */
+    position: relative;
 }
 
-/* Header with Month Name */
 .calendar-header {
     display: flex;
-    justify-content: space-between;  /* Ensures the month and navigation buttons are spaced out */
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;  /* Space between header and calendar */
+    margin-bottom: 20px;
 }
 
 .month-name {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     color: #333;
-    margin: 0;
 }
 
-/* Calendar Grid */
 .calendar {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7 columns for each day of the week */
-    gap: 10px;
-    text-align: center;
-    font-size: 14px;
-    margin-bottom: 40px; /* Space at the bottom of the calendar before the buttons */
+    grid-template-columns: repeat(7, 1fr);
+    gap: 15px;
+    font-size: 16px;
+    margin-bottom: 40px;
 }
 
-/* Day Header (weekdays) */
-.calendar .day-header {
+.day-header {
     font-weight: bold;
-    background: #4CAF50;
+    background: #ff7043;
     color: white;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
-/* Each Day Box */
 .day {
-    padding: 10px;                    /* Reduced padding */
-    background: #f9f9f9;
+    background: #ffffff;
     border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: relative;
-    display: inline-block;            /* Ensure proper alignment */
-    /*width: calc(14.2857% - 20px);       100% / 7 columns with subtraction for padding/margin */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px;                    /* Reduced padding */
+    /*display: inline-block;*/            /* Ensure proper alignment */
     box-sizing: border-box;           /* Include padding in width calculation */
     transition: all 0.3s ease;
     cursor: pointer;
-    text-align: center;
     min-height: 100px;                /* Minimum height for the day box */
     margin: 5px;                      /* Optional: margin between days */
     display: grid;
@@ -344,36 +195,19 @@ nav a.active {
     word-wrap: break-word;
 }
 
-
 .day:hover {
-    background: #e1f5e1; /* Light green background on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+    background: #ffebee;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Styling for the Day Number */
 .day-number {
-    font-weight: bold;
-    font-size: 18px;  /* Increased font size */
+    font-size: 18px;
     color: #333;
-    display: inline-block;
-    padding: 5px 0;
-}
-
-.day-number:hover {
-    color: #4CAF50; /* Change color on hover */
-}
-
-/* Ensure the calendar header and day names are also aligned properly */
-.day-header {
     font-weight: bold;
-    padding: 5px;
-    text-align: center;
-    background-color: #f1f1f1;
 }
 
-/* Event Box Inside Each Day */
 .event {
-    background: #4CAF50;              /* Green background for the event */
+    background: #ff5722;              /* Green background for the event */
     color: white;                     /* White text color */
     padding: 5px 10px;                /* Padding around the event text */
     border-radius: 4px;               /* Rounded corners */
@@ -391,12 +225,6 @@ nav a.active {
     -webkit-box-orient: vertical;
 }
 
-/* Event Hover Effect */
-.event:hover {
-    background: #388E3C;              /* Darker green on hover */
-}
-
-
 /* Responsive Calendar Design */
 @media (max-width: 768px) {
     .calendar-container {
@@ -405,16 +233,12 @@ nav a.active {
     }
 
     .calendar {
-        grid-template-columns: repeat(7, 1fr); /* Keep 7 columns */
-        gap: 8px;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
     }
 
     .day {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr); /* Ensures 7 equal columns */
-        gap: 10px;
-        justify-items: center;  /* Horizontally center the content */
-        align-items: center;    /* Vertically center the content */
+        padding: 15px;
     }
 
     .event {
@@ -422,80 +246,32 @@ nav a.active {
     }
 
     .calendar-header {
-        flex-direction: column; /* Stack the month name and navigation buttons for mobile */
+        flex-direction: column;
         align-items: center;
     }
 
     .month-name {
-        margin-bottom: 10px; /* Space between the month name and buttons */
-    }
-}
-@media (max-width: 768px) {
-    .day {
-        display: grid;
-        grid-template-columns: 1fr; /* Single column for days */
-        gap: 5px; /* Reduced gap */
-    }
-
-    .day .day-number {
-        font-size: 14px; /* Make the font smaller on mobile */
-    }
-
-    /* Adjusting the events layout */
-    .day .event {
-        font-size: 12px; /* Smaller font for events */
+        margin-bottom: 12px;
     }
 }
 
-/* Portrait Mobile */
 @media (max-width: 480px) {
-    .day {
-        grid-template-columns: 1fr; /* Still single column */
-        gap: 5px; /* Reduced gap for small screens */
+    .calendar {
+        grid-template-columns: 1fr;
     }
 
-    .day .day-number {
-        font-size: 12px; /* Make the font even smaller for portrait mode */
+    .day-number {
+        font-size: 14px;
     }
 
-    .day .event {
-        font-size: 10px; /* Smaller font for events on portrait mode */
+    .event {
+        font-size: 10px;
+    }
+
+    .calendar-container {
+        padding: 10px;
     }
 }
-/* Jump button styling */
-#jump-button {
-    background-color: #2196F3; /* Blue background */
-    color: white;              /* White text color */
-    border: none;              /* Remove default border */
-    border-radius: 5px;        /* Rounded corners */
-    padding: 10px 20px;        /* Increased padding for a larger button */
-    font-size: 16px;           /* Increase font size for better readability */
-    cursor: pointer;          /* Change cursor to pointer on hover */
-    transition: all 0.3s ease; /* Smooth transition for hover effect */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    outline: none;             /* Remove default outline */
-}
-
-/* Hover effect for the button */
-#jump-button:hover {
-    background-color: #1e88e5; /* Slightly darker blue on hover */
-    transform: translateY(-2px); /* Slight upward movement on hover */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
-}
-
-/* Focus effect (when button is focused) */
-#jump-button:focus {
-    box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.3); /* Focus outline with a blue glow */
-}
-
-/* Active effect (when button is clicked) */
-#jump-button:active {
-    transform: translateY(2px); /* Slight downward movement on click */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Softer shadow when clicked */
-}
-
-
-/* Navigation buttons at bottom */
 .calendar-navigation {
     display: flex;
     justify-content: space-between;  /* Ensures buttons are on the left and right */
@@ -513,7 +289,7 @@ nav a.active {
 
 /* Style for previous and next month buttons */
 .nav-button {
-    background-color: #4CAF50;
+    background-color: #ff5722;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -530,106 +306,155 @@ nav a.active {
     background-color: #388E3C;
     transform: translateY(-2px);
 }
-/* Modal styles */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 60px;
-}
-
-.modal-content {
-    background-color: white;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 10px;
-    box-sizing: border-box; /* Ensures padding doesn't overflow the width */
-}
-
-.close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-    color: black;
-    text-decoration: none;
+/* Jump Button */
+#jump-button {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 17px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-.modal h2 {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
+#jump-button:hover {
+    background-color: #f4511e;
+    transform: translateY(-2px);
 }
 
-.modal p {
-    font-size: 16px;
+#jump-button:focus {
+    box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.3);
 }
 
-.day.highlight {
-    background-color: #FFD700; /* Gold background or any color */
-    color: white; /* Change text color if needed */
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-    .modal-content {
-        width: 90%; /* Use 90% of screen width on tablets and smaller devices */
-        padding: 15px; /* Slightly smaller padding */
-    }
-
-    .modal h2 {
-        font-size: 20px; /* Reduce heading size */
-    }
-
-    .modal p {
-        font-size: 14px; /* Smaller font for paragraph text */
-    }
-
-    .close-btn {
-        font-size: 24px; /* Smaller close button */
-    }
-}
-
-@media (max-width: 480px) {
-    .modal-content {
-        width: 95%; /* Use more of the screen width on mobile */
-        padding: 10px; /* Even smaller padding */
-    }
-
-    .modal h2 {
-        font-size: 18px; /* Smaller heading on mobile */
-    }
-
-    .modal p {
-        font-size: 12px; /* Smaller font for paragraph text on mobile */
-    }
-
-    .close-btn {
-        font-size: 22px; /* Adjust close button size for mobile */
-    }
+#jump-button:active {
+    transform: translateY(2px);
 }
 
 /* Footer */
 footer {
     text-align: center;
     padding: 20px;
-    background: #4CAF50;
+    background: #ff7043;
     color: white;
     font-size: 14px;
     margin-top: 40px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 15px;
+}
+
+.close-btn {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    float: right;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    cursor: pointer;
+}
+
+.modal h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff5722;
+}
+
+.modal p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Modal Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+    }
+
+    .modal h2 {
+        font-size: 20px;
+    }
+
+    .modal p {
+        font-size: 14px;
+    }
+}
+
+/* Smooth Fade-In Effect */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+/* Scroll animations for fading in elements */
+@keyframes fadeInScroll {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-animate {
+    opacity: 0;
+    animation: fadeInScroll 1s forwards;
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+}
+/* Mobile First */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav a {
+        margin: 10px 0;
+    }
+
+    .calendar-container {
+        padding: 10px;
+    }
+
+    .timeline-section {
+        padding: 10px;
+    }
+
+    .day {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
 
