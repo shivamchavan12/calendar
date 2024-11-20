@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>शाळेच्या वार्षिक कृती - कॅलेंडर</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="calendar.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <h1>शाळेच्या वार्षिक कृती</h1>
+        <p>कॅलेंडर स्वरूपात कार्यक्रम</p>
+        <nav>
+            <a href="index.html" aria-label="टाइमलाइन पृष्ठ">टाइमलाइन</a> |
+            <a href="calendar.html" class="active" aria-label="कॅलेंडर पृष्ठ">कॅलेंडर</a>
+        </nav>
+    </header>
+    <main>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <h3 id="month-year" class="month-name"></h3>
+                <div class="month-year-selector">
+                    <select id="month-selector"></select>
+                    <select id="year-selector"></select>
+                    <button id="jump-button" aria-label="जंप करा">जंप करा</button>
+                </div>
+            </div>
+            <div class="calendar" id="calendar"></div>
+            <div class="calendar-navigation">
+                <button id="prev-month" class="nav-button" aria-label="पिछला महिना">पिछला महिना</button>
+                <button id="next-month" class="nav-button" aria-label="पुढील महिना">पुढील महिना</button>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>© 2024 शाळा व्यवस्थापन</p>
+    </footer>
+
+    <!-- Modal structure (hidden by default) -->
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close-btn">&times;</span>
+            <h2 id="event-modal-title"></h2>
+            <p id="event-modal-description"></p>
+            <p id="event-modal-date"></p>
+        </div>
+    </div>
+
+</body>
+</html>
