@@ -250,59 +250,30 @@ nav a:hover {
 @media (max-width: 768px) {
     .calendar-container {
         padding: 15px;
-        width: 100%;
-        overflow-x: auto; /* Enable horizontal scrolling */
     }
 
     .calendar {
-        display: flex; /* Use flexbox to align calendar days horizontally */
-        flex-wrap: nowrap; /* Prevent wrapping, keep everything in one row */
-        gap: 10px;
+        grid-template-columns: repeat(7, 1fr); /* Keep 7 columns */
+        gap: 5px;
     }
 
     .day {
-        flex: 0 0 auto; /* Prevent flex items from shrinking */
-        width: 70px; /* Ensure each day has a defined width */
-        min-height: 80px; /* Ensure enough height for each day */
-        padding: 10px;
-    }
-
-    .event {
-        font-size: 10px;
+        padding: 8px;
+        font-size: 14px; /* Adjust font size for mobile */
     }
 
     .calendar-header {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .month-name {
-        margin-bottom: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    .calendar {
-        flex-wrap: nowrap;
-        width: 100%;
-    }
-
-    .day-number {
         font-size: 14px;
     }
 
-    .event {
-        font-size: 10px;
-    }
-
-    .calendar-container {
-        padding: 10px;
-        overflow-x: auto; /* Allow horizontal scrolling */
+    .calendar-header div {
+        font-size: 12px;
     }
 
     .calendar-navigation {
+        display: flex;
+        justify-content: space-between;
         flex-direction: column;
-        gap: 15px;
         margin-top: 20px;
     }
 
@@ -311,18 +282,56 @@ nav a:hover {
         padding: 12px;
     }
 
-    .month-year-selector {
-        flex-direction: column;
-    }
-
     #jump-button {
+        width: 100%;
         padding: 12px 20px;
         font-size: 16px;
     }
 
+    /* Adjust layout for mobile, move buttons below the calendar */
+    .calendar-footer {
+        margin-top: 20px;
+        text-align: center;
+    }
+}
+
+/* For very small mobile screens (480px and below) */
+@media (max-width: 480px) {
+    .calendar-container {
+        padding: 10px;
+    }
+
+    .calendar {
+        grid-template-columns: repeat(7, 1fr); /* Maintain 7 columns */
+        gap: 4px;
+    }
+
+    .day {
+        padding: 6px;
+        font-size: 12px; /* Smaller font size */
+    }
+
     .calendar-header {
+        font-size: 12px;
+    }
+
+    .calendar-footer {
+        margin-top: 20px;
+    }
+
+    .calendar-navigation {
         flex-direction: column;
-        margin-bottom: 15px;
+        gap: 10px;
+    }
+
+    .nav-button {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #jump-button {
+        padding: 12px 18px;
+        font-size: 14px;
     }
 }
 .calendar-navigation {
