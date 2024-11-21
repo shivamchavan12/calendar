@@ -51,85 +51,105 @@ nav a:hover {
     background-color: #f44336;
     transform: translateY(-2px);
 }
-
-/* Timeline Section */
-.timeline-section {
-    padding: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    background: #fff3e0; /* Soft gradient */
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-    animation: fadeIn 1s ease-in-out;
+.title-center {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+    margin: 20px 0;
 }
-
+/* Timeline Section */
 #timeline-container {
-    position: relative;
     margin: 0 auto;
     padding: 30px 0;
     max-width: 850px;
-}
-
-#timeline-container::before {
-    content: '';
-    position: absolute;
-    width: 4px;
-    background: #ff7043;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    background: #f9f9f9; /* Light background for the container */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Timeline Items */
 .timeline-item {
     position: relative;
-    margin: 25px 0;
-    width: 45%;
-    padding: 20px;
-    background: white;
+    margin: 30px 0; /* Spacing between items */
+    width: 80%; /* Width of each timeline box */
+    padding: 15px;
+    background: linear-gradient(135deg, #ff7043, #ffab91); /* Gradient background */
+    color: white; /* Text color */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
     border-radius: 10px;
     text-align: center;
-    transition: all 0.3s ease;
-    border: 2px solid #ff7043;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(20px); /* Start slightly below */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+}
+
+/* Visible class to trigger fade-in and pop effect */
+.timeline-item.visible {
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Move to original position */
+}
+
+/* Align items */
+.timeline-item:nth-child(odd) {
+    margin-left: auto; /* Align odd items to the right */
+    margin-right: 0; /* Reset right margin */
+    text-align: right; /* Right text alignment */
 }
 
 .timeline-item:nth-child(even) {
-    left: 55%;
-    text-align: left;
+    margin-right: auto; /* Align even items to the left */
+    margin-left: 0; /* Reset left margin */
+    text-align: left; /* Left text alignment */
 }
 
-.timeline-item:nth-child(odd) {
-    left: 0;
-    text-align: right;
-}
-
+/* Dots Connecting the Items */
 .timeline-item::before {
     content: '';
     position: absolute;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #ff7043;
+    background: white; /* Dot color */
+    border: 4px solid #ff7043; /* Border color for dots */
     top: 50%;
-    left: -12px;
     transform: translateY(-50%);
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd)::before {
+    right: -12px; /* Dots on the right for odd items */
 }
 
 .timeline-item:nth-child(even)::before {
-    left: auto;
-    right: -12px;
+    left: -12px; /* Dots on the left for even items */
 }
 
+/* Icons */
+.timeline-item h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.timeline-item p {
+    margin: 10px 0 0;
+}
+
+/* Hover Effects */
 .timeline-item:hover {
-    background-color: #e8f5e9;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transform: scale(1.05);
-    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-
+/* Responsive Design */
+@media (max-width: 768px) {
+    .timeline-item {
+        width: 100%; /* Full width on smaller screens */
+        margin: 20px 0; /* Spacing between items */
+        text-align: center; /* Center text */
+    }
+}
 /* Calendar Section */
 .calendar-container {
     max-width: 900px;
@@ -142,6 +162,7 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow-x: auto;
 }
 
 .calendar-header {
@@ -229,16 +250,21 @@ nav a:hover {
 @media (max-width: 768px) {
     .calendar-container {
         padding: 15px;
-        width: auto;
+        width: 100%;
+        overflow-x: auto; /* Enable horizontal scrolling */
     }
 
     .calendar {
-        grid-template-columns: repeat(7, 1fr);
+        display: flex; /* Use flexbox to align calendar days horizontally */
+        flex-wrap: nowrap; /* Prevent wrapping, keep everything in one row */
         gap: 10px;
     }
 
     .day {
-        padding: 15px;
+        flex: 0 0 auto; /* Prevent flex items from shrinking */
+        width: 70px; /* Ensure each day has a defined width */
+        min-height: 80px; /* Ensure enough height for each day */
+        padding: 10px;
     }
 
     .event {
@@ -257,7 +283,8 @@ nav a:hover {
 
 @media (max-width: 480px) {
     .calendar {
-        grid-template-columns: 1fr;
+        flex-wrap: nowrap;
+        width: 100%;
     }
 
     .day-number {
@@ -270,6 +297,32 @@ nav a:hover {
 
     .calendar-container {
         padding: 10px;
+        overflow-x: auto; /* Allow horizontal scrolling */
+    }
+
+    .calendar-navigation {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .nav-button {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .month-year-selector {
+        flex-direction: column;
+    }
+
+    #jump-button {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+
+    .calendar-header {
+        flex-direction: column;
+        margin-bottom: 15px;
     }
 }
 .calendar-navigation {
