@@ -87,8 +87,8 @@ nav a:hover {
 
 /* Visible class to trigger fade-in and pop effect */
 .timeline-item.visible {
-    opacity: 1; /* Fade in */
-    transform: translateY(0); /* Move to original position */
+    opacity: 1;
+    transform: translateY(0); /* or any transition */
 }
 
 /* Align items */
@@ -142,14 +142,104 @@ nav a:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* Responsive Design for Mobile */
+@media (max-width: 1024px) {
+    #timeline-container {
+        max-width: 700px;
+        padding: 0 10px;
+        overflow: hidden; /* Prevent container overflow */
+    }
+
     .timeline-item {
-        width: 100%; /* Full width on smaller screens */
-        margin: 20px 0; /* Spacing between items */
-        text-align: center; /* Center text */
+        width: 30%; /* Decrease width for tablet */
+        margin: 10px 0;
+        padding: 8px;
+        font-size: 14px;
+        text-align: center;
+        box-sizing: border-box;
+        word-wrap: break-word;
+    }
+
+    .timeline-item:nth-child(even) {
+        left: 50%;
+        text-align: left;
+    }
+
+    .timeline-item:nth-child(odd) {
+        left: 0;
+        text-align: right;
+    }
+
+    .timeline-item::before {
+        left: -10px;
+        width: 16px;
+        height: 16px;
+        border-width: 3px;
+    }
+
+    .timeline-item:nth-child(even)::before {
+        left: 100%;
+        transform: translateX(-50%) scale(0.6);
+    }
+
+    .timeline-item:nth-child(odd)::before {
+        left: -10px;
+        transform: translateX(0%) scale(0.6);
     }
 }
+
+@media (max-width: 768px) {
+    #timeline-container {
+        max-width: 100%;
+        padding: 0 10px;
+        overflow: hidden;
+    }
+
+    .timeline-item {
+        width: 80%; /* Decrease width for mobile devices */
+        margin: 10px 0;
+        padding: 6px;
+        font-size: 12px;
+        text-align: center;
+        box-sizing: border-box;
+        word-wrap: break-word;
+    }
+
+    .timeline-item::before {
+        left: 50%;
+        transform: translateX(-50%) scale(0.5);
+        width: 12px;
+        height: 12px;
+        border-width: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    #timeline-container {
+        max-width: 100%;
+        padding: 0 10px;
+        overflow: hidden;
+    }
+
+    .timeline-item {
+        width: 90%; /* Further reduce width for very small screens */
+        margin: 8px 0;
+        padding: 4px;
+        font-size: 10px;
+        text-align: center;
+        box-sizing: border-box;
+        word-wrap: break-word;
+    }
+
+    .timeline-item::before {
+        left: 50%;
+        transform: translateX(-50%) scale(0.4);
+        width: 10px;
+        height: 10px;
+        border-width: 1.5px;
+    }
+}
+
 /* Calendar Section */
 .calendar-container {
     max-width: 900px;
