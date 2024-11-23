@@ -43,4 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
             alert(`Language switched to: ${selectedLang === 'mr' ? 'मराठी' : 'English'}`);
         });
     });
+    document.getElementById("dark-mode-toggle").addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+    });
 });
