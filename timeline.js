@@ -48,4 +48,27 @@ document.addEventListener('DOMContentLoaded', function () {
         // Append item to container
         timelineContainer.appendChild(timelineItem);
     });
+
+    // Function to show timeline items when they are in view
+    const showItemsOnScroll = () => {
+        const triggerBottom = window.innerHeight / 5 * 4; // Trigger when 80% of the item is in view
+
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        timelineItems.forEach(item => {
+            const boxTop = item.getBoundingClientRect().top;
+
+            if (boxTop < triggerBottom) {
+                item.classList.add('visible'); // Add the visible class to fade in
+            } else {
+                item.classList.remove('visible'); // Remove class if not in view
+            }
+        });
+    };
+
+    // Initial check
+    showItemsOnScroll();
+
+    // Add scroll event listener
+    window.addEventListener('scroll', showItemsOnScroll);
 });
