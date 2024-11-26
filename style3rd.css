@@ -1,0 +1,614 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff7f0; /* Light peachy warm background */
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(145deg, #ff7e5f, #feb47b); /* Warm gradient */
+    color: white;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-bottom: 4px solid #ff7043;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 38px;
+    font-weight: 700;
+}
+
+/* Navigation */
+nav {
+    text-align: center;
+    margin-top: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    margin: 0 15px;
+    background-color: #ff7043; /* Rich orange */
+    border-radius: 5px;
+    font-size: 17px;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav a.active {
+    background-color: #f4511e; /* Slightly darker */
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: #f44336;
+    transform: translateY(-2px);
+}
+.title-center {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+    margin: 20px 0;
+}
+/* Timeline Section */
+#timeline-container {
+    margin: 0 auto;
+    padding: 30px 0;
+    max-width: 850px;
+    position: relative;
+    background: #f9f9f9; /* Light background for the container */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Timeline Items */
+.timeline-item {
+    position: relative;
+    margin: 30px 0; /* Spacing between items */
+    width: 80%; /* Width of each timeline box */
+    padding: 15px;
+    background: linear-gradient(135deg, #ff7043, #ffab91); /* Gradient background */
+    color: white; /* Text color */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    text-align: center;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(20px); /* Start slightly below */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+}
+
+/* Visible class to trigger fade-in and pop effect */
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0); /* or any transition */
+}
+
+/* Align items */
+.timeline-item:nth-child(odd) {
+    margin-left: auto; /* Align odd items to the right */
+    margin-right: 0; /* Reset right margin */
+    text-align: right; /* Right text alignment */
+}
+
+.timeline-item:nth-child(even) {
+    margin-right: auto; /* Align even items to the left */
+    margin-left: 0; /* Reset left margin */
+    text-align: left; /* Left text alignment */
+}
+
+/* Dots Connecting the Items */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white; /* Dot color */
+    border: 4px solid #ff7043; /* Border color for dots */
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd)::before {
+    right: -12px; /* Dots on the right for odd items */
+}
+
+.timeline-item:nth-child(even)::before {
+    left: -12px; /* Dots on the left for even items */
+}
+
+/* Icons */
+.timeline-item h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.timeline-item p {
+    margin: 10px 0 0;
+}
+
+/* Hover Effects */
+.timeline-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 1024px) {
+    #timeline-container {
+        max-width: 700px;
+        padding: 0 10px;
+        overflow: hidden; /* Prevent container overflow */
+    }
+
+    .timeline-item {
+        width: 30%; /* Decrease width for tablet */
+        margin: 10px 0;
+        padding: 8px;
+        font-size: 14px;
+        text-align: center;
+        box-sizing: border-box;
+        word-wrap: break-word;
+    }
+
+    .timeline-item:nth-child(even) {
+        left: 50%;
+        text-align: left;
+    }
+
+    .timeline-item:nth-child(odd) {
+        left: 0;
+        text-align: right;
+    }
+
+    .timeline-item::before {
+        left: -10px;
+        width: 16px;
+        height: 16px;
+        border-width: 3px;
+    }
+
+    .timeline-item:nth-child(even)::before {
+        left: 100%;
+        transform: translateX(-50%) scale(0.6);
+    }
+
+    .timeline-item:nth-child(odd)::before {
+        left: -10px;
+        transform: translateX(0%) scale(0.6);
+    }
+}
+
+@media (max-width: 768px) {
+    #timeline-container {
+        max-width: 100%;
+        padding: 0 10px;
+        overflow: hidden;
+    }
+
+    .timeline-item {
+        width: 80%; /* Decrease width for mobile devices */
+        margin: 10px 0;
+        padding: 6px;
+        font-size: 12px;
+        text-align: center;
+        box-sizing: border-box;
+        word-wrap: break-word;
+    }
+
+    .timeline-item::before {
+        left: 50%;
+        transform: translateX(-50%) scale(0.5);
+        width: 12px;
+        height: 12px;
+        border-width: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    #timeline-container {
+        max-width: 100%;
+        padding: 0 10px;
+        overflow: hidden;
+    }
+
+    .timeline-item {
+        width: 90%; /* Further reduce width for very small screens */
+        margin: 8px 0;
+        padding: 4px;
+        font-size: 10px;
+        text-align: center;
+        box-sizing: border-box;
+        word-wrap: break-word;
+    }
+
+    .timeline-item::before {
+        left: 50%;
+        transform: translateX(-50%) scale(0.4);
+        width: 10px;
+        height: 10px;
+        border-width: 1.5px;
+    }
+}
+
+/* Calendar Section */
+.calendar-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #fff3e0;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: auto;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.month-name {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 15px;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.day-header {
+    font-weight: bold;
+    background: #ff7043;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.day {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px;                    /* Reduced padding */
+    /*display: inline-block;*/            /* Ensure proper alignment */
+    box-sizing: border-box;           /* Include padding in width calculation */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-height: 100px;                /* Minimum height for the day box */
+    margin: 5px;                      /* Optional: margin between days */
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Ensures 7 equal columns */
+    gap: 10px;
+    overflow: hidden; /* Hide anything that goes outside the box */
+    word-wrap: break-word;
+}
+
+.day:hover {
+    background: #ffebee;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.day-number {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+.event {
+    background: #ff5722;              /* Green background for the event */
+    color: white;                     /* White text color */
+    padding: 5px 10px;                /* Padding around the event text */
+    border-radius: 4px;               /* Rounded corners */
+    font-size: 12px;                  /* Smaller font size for the event title */
+    position: absolute;               /* Position the event inside the day box */
+    bottom: 10px;                     /* Place the event 10px from the bottom */
+    left: 50%;                        /* Center the event horizontally */
+    transform: translateX(-50%);      /* Ensure proper centering */
+    white-space: nowrap;              /* Prevent the event text from wrapping */
+    position: absolute;
+    overflow: hidden;                 /* Prevent overflow outside the box */
+    text-overflow: ellipsis; 
+    display: -webkit-box;
+    -webkit-line-clamp: 1;            
+    -webkit-box-orient: vertical;
+}
+
+/* Responsive Calendar Design */
+@media (max-width: 768px) {
+    .calendar-container {
+        padding: 15px;
+    }
+
+    .calendar {
+        grid-template-columns: repeat(7, 1fr); /* Keep 7 columns */
+        gap: 5px;
+    }
+
+    .day {
+        padding: 8px;
+        font-size: 14px; /* Adjust font size for mobile */
+    }
+
+    .calendar-header {
+        font-size: 14px;
+    }
+
+    .calendar-header div {
+        font-size: 12px;
+    }
+
+    .calendar-navigation {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .nav-button {
+        width: 100%;
+        padding: 12px;
+    }
+
+    #jump-button {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+
+    /* Adjust layout for mobile, move buttons below the calendar */
+    .calendar-footer {
+        margin-top: 20px;
+        text-align: center;
+    }
+}
+
+/* For very small mobile screens (480px and below) */
+@media (max-width: 480px) {
+    .calendar-container {
+        padding: 10px;
+    }
+
+    .calendar {
+        grid-template-columns: repeat(7, 1fr); /* Maintain 7 columns */
+        gap: 4px;
+    }
+
+    .day {
+        padding: 6px;
+        font-size: 12px; /* Smaller font size */
+    }
+
+    .calendar-header {
+        font-size: 12px;
+    }
+
+    .calendar-footer {
+        margin-top: 20px;
+    }
+
+    .calendar-navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-button {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #jump-button {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+}
+.calendar-navigation {
+    display: flex;
+    justify-content: space-between;  /* Ensures buttons are on the left and right */
+    width: 100%;  /* Make sure the navigation container takes full width */
+    padding: 8px 12px;  /* Adds padding to the navigation container */
+    gap: 15px;  /* Space between buttons */
+    position: absolute;  /* Fix the buttons to the bottom */
+    bottom: 10px;  /* Ensures the navigation buttons are not at the very edge */
+    left: 0;
+    right: 0;
+    margin-top: 15px;  /* Adds space between the calendar grid and the navigation buttons */
+    box-sizing: border-box;  /* Ensures padding does not affect the container width */
+}
+
+
+/* Style for previous and next month buttons */
+.nav-button {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+    display: inline-block; /* Ensure the button size matches its content */
+    width: auto; 
+}
+
+.nav-button:hover {
+    background-color: #388E3C;
+    transform: translateY(-2px);
+}
+/* Jump Button */
+#jump-button {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+#jump-button:hover {
+    background-color: #f4511e;
+    transform: translateY(-2px);
+}
+
+#jump-button:focus {
+    box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.3);
+}
+
+#jump-button:active {
+    transform: translateY(2px);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #ff7043;
+    color: white;
+    font-size: 14px;
+    margin-top: 40px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 15px;
+}
+
+.close-btn {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    float: right;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    cursor: pointer;
+}
+
+.modal h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff5722;
+}
+
+.modal p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Modal Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+    }
+
+    .modal h2 {
+        font-size: 20px;
+    }
+
+    .modal p {
+        font-size: 14px;
+    }
+}
+
+/* Smooth Fade-In Effect */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+/* Scroll animations for fading in elements */
+@keyframes fadeInScroll {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.scroll-animate {
+    opacity: 0;
+    animation: fadeInScroll 1s forwards;
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+}
+/* Mobile First */
+@media (max-width: 768px) {
+    .header h1 {
+        width: auto;
+        font-size: 1.5rem;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav a {
+        margin: 10px 0;
+    }
+
+    .calendar-container {
+        padding: 10px;
+    }
+
+    .timeline-section {
+        width: auto;
+        padding: 10px;
+    }
+
+    .day {
+        width: auto;
+        box-sizing: border-box;
+    }
+}
+

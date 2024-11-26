@@ -20,8 +20,9 @@ body {
 
 .header h1 {
     margin: 0;
-    font-size: 38px;
+    font-size: 2rem;
     font-weight: 700;
+    line-height: 1.2;
 }
 
 /* Navigation */
@@ -34,10 +35,10 @@ nav a {
     color: white;
     text-decoration: none;
     padding: 12px 25px;
-    margin: 0 15px;
+    margin: 0 10px;
     background-color: #ff7043; /* Rich orange */
     border-radius: 5px;
-    font-size: 17px;
+    font-size: 16px;
     display: inline-block;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -51,229 +52,138 @@ nav a:hover {
     background-color: #f44336;
     transform: translateY(-2px);
 }
+
 .title-center {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    color: #000000;
+    color: #000;
     margin: 20px 0;
 }
+
 /* Timeline Section */
 #timeline-container {
     margin: 0 auto;
-    padding: 30px 0;
+    padding: 30px 10px;
     max-width: 850px;
-    position: relative;
     background: #f9f9f9; /* Light background for the container */
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Timeline Items */
 .timeline-item {
     position: relative;
-    margin: 30px 0; /* Spacing between items */
-    width: 80%; /* Width of each timeline box */
+    margin: 30px 0;
+    width: calc(100% - 40px); /* Maintain width dynamically */
     padding: 15px;
     background: linear-gradient(135deg, #ff7043, #ffab91); /* Gradient background */
-    color: white; /* Text color */
+    color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
     border-radius: 10px;
     text-align: center;
-    opacity: 0; /* Initially hidden */
-    transform: translateY(20px); /* Start slightly below */
-    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Visible class to trigger fade-in and pop effect */
+/* Visible class to trigger fade-in */
 .timeline-item.visible {
     opacity: 1;
-    transform: translateY(0); /* or any transition */
+    transform: translateY(0);
 }
 
 /* Align items */
 .timeline-item:nth-child(odd) {
-    margin-left: auto; /* Align odd items to the right */
-    margin-right: 0; /* Reset right margin */
-    text-align: right; /* Right text alignment */
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
 }
 
 .timeline-item:nth-child(even) {
-    margin-right: auto; /* Align even items to the left */
-    margin-left: 0; /* Reset left margin */
-    text-align: left; /* Left text alignment */
+    margin-right: auto;
+    margin-left: 0;
+    text-align: left;
 }
 
-/* Dots Connecting the Items */
+/* Dots Connecting Items */
 .timeline-item::before {
     content: '';
     position: absolute;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: white; /* Dot color */
-    border: 4px solid #ff7043; /* Border color for dots */
+    background: white;
+    border: 4px solid #ff7043;
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
 }
 
 .timeline-item:nth-child(odd)::before {
-    right: -12px; /* Dots on the right for odd items */
+    right: -12px;
 }
 
 .timeline-item:nth-child(even)::before {
-    left: -12px; /* Dots on the left for even items */
+    left: -12px;
 }
 
-/* Icons */
-.timeline-item h3 {
-    margin: 0;
-    font-size: 1.5em;
-}
-
-.timeline-item p {
-    margin: 10px 0 0;
-}
-
-/* Hover Effects */
-.timeline-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Responsive Design for Mobile */
-@media (max-width: 1024px) {
+/* Responsive Design for Timeline */
+/* Responsive Adjustment for Timeline (Mobile View) */
+@media (max-width: 768px) {
     #timeline-container {
-        max-width: 700px;
-        padding: 0 10px;
-        overflow: hidden; /* Prevent container overflow */
+        padding: 20px 10px;
     }
 
     .timeline-item {
-        width: 30%; /* Decrease width for tablet */
-        margin: 10px 0;
-        padding: 8px;
-        font-size: 14px;
-        text-align: center;
-        box-sizing: border-box;
-        word-wrap: break-word;
-    }
-
-    .timeline-item:nth-child(even) {
-        left: 50%;
-        text-align: left;
-    }
-
-    .timeline-item:nth-child(odd) {
-        left: 0;
-        text-align: right;
+        width: 90%; /* Center the items horizontally */
+        margin: 10px auto; /* Ensure proper spacing */
+        position: relative;
     }
 
     .timeline-item::before {
-        left: -10px;
         width: 16px;
         height: 16px;
-        border-width: 3px;
-    }
-
-    .timeline-item:nth-child(even)::before {
-        left: 100%;
-        transform: translateX(-50%) scale(0.6);
+        border-radius: 50%;
+        background: white;
+        border: 4px solid #ff7043;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1; /* Ensure the dot is on top of other elements */
     }
 
     .timeline-item:nth-child(odd)::before {
-        left: -10px;
-        transform: translateX(0%) scale(0.6);
+        left: -12px; /* Align dots to the left for odd items */
+    }
+
+    .timeline-item:nth-child(even)::before {
+        right: -12px; /* Align dots to the right for even items */
+    }
+
+    .timeline-item::after {
+        display: none; /* Remove the connecting line */
     }
 }
 
-@media (max-width: 768px) {
-    #timeline-container {
-        max-width: 100%;
-        padding: 0 10px;
-        overflow: hidden;
-    }
-
-    .timeline-item {
-        width: 80%; /* Decrease width for mobile devices */
-        margin: 10px 0;
-        padding: 6px;
-        font-size: 12px;
-        text-align: center;
-        box-sizing: border-box;
-        word-wrap: break-word;
-    }
-
-    .timeline-item::before {
-        left: 50%;
-        transform: translateX(-50%) scale(0.5);
-        width: 12px;
-        height: 12px;
-        border-width: 2px;
-    }
-}
-
-@media (max-width: 480px) {
-    #timeline-container {
-        max-width: 100%;
-        padding: 0 10px;
-        overflow: hidden;
-    }
-
-    .timeline-item {
-        width: 90%; /* Further reduce width for very small screens */
-        margin: 8px 0;
-        padding: 4px;
-        font-size: 10px;
-        text-align: center;
-        box-sizing: border-box;
-        word-wrap: break-word;
-    }
-
-    .timeline-item::before {
-        left: 50%;
-        transform: translateX(-50%) scale(0.4);
-        width: 10px;
-        height: 10px;
-        border-width: 1.5px;
-    }
-}
 
 /* Calendar Section */
 .calendar-container {
     max-width: 900px;
     margin: 40px auto;
-    padding: 30px;
+    padding: 20px;
     background: #fff3e0;
     border-radius: 15px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
     display: flex;
     flex-direction: column;
-    position: relative;
-    overflow-x: auto;
-}
-
-.calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.month-name {
-    font-size: 26px;
-    font-weight: bold;
-    color: #333;
+    text-align: center;
 }
 
 .calendar {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 15px;
+    gap: 10px;
     font-size: 16px;
-    margin-bottom: 40px;
 }
 
 .day-header {
@@ -297,8 +207,8 @@ nav a:hover {
     box-sizing: border-box;           /* Include padding in width calculation */
     transition: all 0.3s ease;
     cursor: pointer;
-    min-height: 100px;                /* Minimum height for the day box */
-    margin: 5px;                      /* Optional: margin between days */
+    min-height: 80px;                /* Minimum height for the day box */
+    margin: 2px;                      /* Optional: margin between days */
     display: grid;
     grid-template-columns: repeat(7, 1fr); /* Ensures 7 equal columns */
     gap: 10px;
@@ -309,12 +219,6 @@ nav a:hover {
 .day:hover {
     background: #ffebee;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.day-number {
-    font-size: 18px;
-    color: #333;
-    font-weight: bold;
 }
 
 .event {
@@ -336,153 +240,136 @@ nav a:hover {
     -webkit-box-orient: vertical;
 }
 
-/* Responsive Calendar Design */
+/* Responsive Calendar */
+/* Responsive Calendar */
 @media (max-width: 768px) {
     .calendar-container {
-        padding: 15px;
-    }
-
-    .calendar {
-        grid-template-columns: repeat(7, 1fr); /* Keep 7 columns */
-        gap: 5px;
-    }
-
-    .day {
-        padding: 8px;
-        font-size: 14px; /* Adjust font size for mobile */
-    }
-
-    .calendar-header {
-        font-size: 14px;
-    }
-
-    .calendar-header div {
-        font-size: 12px;
-    }
-
-    .calendar-navigation {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        margin-top: 20px;
-    }
-
-    .nav-button {
-        width: 100%;
-        padding: 12px;
-    }
-
-    #jump-button {
-        width: 100%;
-        padding: 12px 20px;
-        font-size: 16px;
-    }
-
-    /* Adjust layout for mobile, move buttons below the calendar */
-    .calendar-footer {
-        margin-top: 20px;
-        text-align: center;
-    }
-}
-
-/* For very small mobile screens (480px and below) */
-@media (max-width: 480px) {
-    .calendar-container {
         padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: auto; /* In case the calendar overflows horizontally */
     }
 
     .calendar {
-        grid-template-columns: repeat(7, 1fr); /* Maintain 7 columns */
-        gap: 4px;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr); /* 7 columns for the days of the week */
+        gap: 2px; /* Reduce gap between cells */
+        padding: 0;
+        margin: 0;
+        width: 100%;
     }
 
-    .day {
-        padding: 6px;
-        font-size: 12px; /* Smaller font size */
+    .calendar .day {
+        display: flex;
+        flex-direction: column; /* Stack the day number and event vertically */
+        align-items: center; /* Center both the date and event */
+        justify-content: flex-start; /* Align to the top of the box */
+        padding: 12px;
+        border: 1px solid #ddd;
+        box-sizing: border-box;
+        background-color: #fff;
+        transition: background-color 0.3s ease;
+        overflow: hidden; /* Ensure content does not overflow */
+        text-overflow: ellipsis; /* Show ellipsis if text overflows */
+        white-space: nowrap; /* Prevent text from wrapping to next line */
+        position: relative;
+        height: 80px; /* Fixed height for consistency */
     }
 
-    .calendar-header {
+    /* Fix issue with Tuesday being larger */
+    .calendar .day:nth-child(7) {
+        /* Ensure that all days are the same size */
+        height: 80px;
+    }
+
+    .calendar .day:hover {
+        background-color: #f1f1f1;
+    }
+
+    .calendar .day.active {
+        background-color: #ff7043;
+        color: white;
+    }
+
+    /* Make sure events are properly positioned inside the day box */
+    .calendar .day .event {
+        position: absolute;
+        bottom: 5px; /* Place the event text at the bottom */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #ff5722;
+        color: white;
         font-size: 12px;
+        padding: 3px 6px;
+        border-radius: 4px;
+        white-space: nowrap;
     }
 
-    .calendar-footer {
-        margin-top: 20px;
+    /* Adjusting Month Name and Navigation Buttons */
+    .calendar-header {
+        display: flex;
+        justify-content: space-between; /* Space the month name and buttons apart */
+        align-items: center; /* Align buttons and month name vertically */
+        margin-bottom: 15px;
     }
 
-    .calendar-navigation {
-        flex-direction: column;
+    .calendar-header .month-name {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .calendar-header .navigation-buttons {
+        display: flex;
         gap: 10px;
     }
 
-    .nav-button {
-        width: 100%;
-        padding: 10px;
-    }
-
-    #jump-button {
-        padding: 12px 18px;
+    .calendar-header .navigation-buttons button {
+        background-color: #ff7043;
+        color: white;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 4px;
+        cursor: pointer;
         font-size: 14px;
     }
-}
-.calendar-navigation {
-    display: flex;
-    justify-content: space-between;  /* Ensures buttons are on the left and right */
-    width: 100%;  /* Make sure the navigation container takes full width */
-    padding: 8px 12px;  /* Adds padding to the navigation container */
-    gap: 15px;  /* Space between buttons */
-    position: absolute;  /* Fix the buttons to the bottom */
-    bottom: 10px;  /* Ensures the navigation buttons are not at the very edge */
-    left: 0;
-    right: 0;
-    margin-top: 15px;  /* Adds space between the calendar grid and the navigation buttons */
-    box-sizing: border-box;  /* Ensures padding does not affect the container width */
+
+    .calendar-header .navigation-buttons button:hover {
+        background-color: #f4511e;
+    }
+
+    /* Month Selector and Buttons */
+    .month-selector {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .month-selector select {
+        padding: 5px 10px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .month-selector button {
+        padding: 10px 10px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        background-color: #ff7043;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    .month-selector button:hover {
+        background-color: #f4511e;
+        margin-top: 30px;
+    }
 }
 
 
-/* Style for previous and next month buttons */
-.nav-button {
-    background-color: #ff5722;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    white-space: nowrap;
-    display: inline-block; /* Ensure the button size matches its content */
-    width: auto; 
-}
-
-.nav-button:hover {
-    background-color: #388E3C;
-    transform: translateY(-2px);
-}
-/* Jump Button */
-#jump-button {
-    background-color: #ff5722;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 25px;
-    font-size: 17px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-#jump-button:hover {
-    background-color: #f4511e;
-    transform: translateY(-2px);
-}
-
-#jump-button:focus {
-    box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.3);
-}
-
-#jump-button:active {
-    transform: translateY(2px);
-}
 
 /* Footer */
 footer {
@@ -492,6 +379,35 @@ footer {
     color: white;
     font-size: 14px;
     margin-top: 40px;
+}
+/* Button Styles */
+button {
+    background-color: #ff7043; /* Warm orange */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #f4511e; /* Darker orange */
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #e64a19; /* Deep orange */
+    transform: translateY(1px);
+}
+
+button:disabled {
+    background-color: #ffccbc; /* Muted tone */
+    color: #8d6e63;
+    cursor: not-allowed;
 }
 
 /* Modal Styles */
@@ -561,54 +477,3 @@ footer {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
-/* Scroll animations for fading in elements */
-@keyframes fadeInScroll {
-    0% {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.scroll-animate {
-    opacity: 0;
-    animation: fadeInScroll 1s forwards;
-}
-
-.scroll-animate.visible {
-    opacity: 1;
-}
-/* Mobile First */
-@media (max-width: 768px) {
-    .header h1 {
-        width: auto;
-        font-size: 1.5rem;
-    }
-
-    nav {
-        display: flex;
-        flex-direction: column;
-    }
-
-    nav a {
-        margin: 10px 0;
-    }
-
-    .calendar-container {
-        padding: 10px;
-    }
-
-    .timeline-section {
-        width: auto;
-        padding: 10px;
-    }
-
-    .day {
-        width: auto;
-        box-sizing: border-box;
-    }
-}
-
