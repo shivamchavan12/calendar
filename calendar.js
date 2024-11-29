@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const yearSelector = document.getElementById('year-selector');
     const jumpButton = document.getElementById('jump-button');
 
-    // Events data with title, date, and description
     const events = [
         { title: "विद्यार्थ्यांचे प्रगती अहवाल तयार करणे", date: "2024-01-31", description: "प्रगती अहवाल तयार करणे संबंधित महत्त्वपूर्ण मुद्दे चर्चा करा." },
         { title: "शालेय स्पर्धांचे आयोजन", date: "2024-02-20", description: "शालेय स्पर्धांचे आयोजन करणे. विद्यार्थ्यांसाठी विविध स्पर्धा आयोजित करा." },
@@ -16,13 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
         { title: "स्वातंत्र्यदिन साजरा", date: "2024-08-15", description: "स्वातंत्र्यदिन साजरा करा, झंझावत व परेड आयोजित करा." }
     ];
 
-    // Days of the week (in Marathi)
     const weekdays = ['रवि', 'सोम', 'मंगळ', 'बुध', 'गुरु', 'शुक्र', 'शनि'];
 
-    // State to track the current month and year
     let currentDate = new Date();
 
-    // Get modal elements
     const modal = document.getElementById('event-modal');
     const modalTitle = document.getElementById('event-modal-title');
     const modalDescription = document.getElementById('event-modal-description');
@@ -30,24 +26,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeModalButton = document.getElementById('close-modal');
 
     // Function to render the calendar
-    function renderCalendar(date) {
+    function renderCalendar(date, highlightDate = null) {
         calendarElement.innerHTML = ''; // Clear the previous calendar
 
         const currentMonth = date.getMonth();
         const currentYear = date.getFullYear();
 
-        // Get the first day and number of days in the current month
         const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
         const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-        // Display the current month and year
         document.getElementById('month-year').textContent = `${date.toLocaleString('mr-IN', { month: 'long' })} ${currentYear}`;
 
-        // Update dropdowns to reflect the current month and year
         monthSelector.value = currentMonth;
         yearSelector.value = currentYear;
 
-        // Render weekdays
         weekdays.forEach(day => {
             const dayElement = document.createElement('div');
             dayElement.classList.add('day-header');
@@ -67,13 +59,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const dayElement = document.createElement('div');
             dayElement.classList.add('day');
             
-            // Day number
             const dayNumber = document.createElement('div');
             dayNumber.classList.add('day-number');
             dayNumber.textContent = day;
             dayElement.appendChild(dayNumber);
 
-            // Check if there are events on this day
             const currentDay = new Date(currentYear, currentMonth, day);
             events.forEach(event => {
                 const eventDate = new Date(event.date);
@@ -82,18 +72,24 @@ document.addEventListener('DOMContentLoaded', function () {
                     eventDate.getMonth() === currentDay.getMonth() &&
                     eventDate.getFullYear() === currentDay.getFullYear()
                 ) {
-                    // Add the event title directly into the day (in the event box)
                     const eventElement = document.createElement('div');
                     eventElement.classList.add('event');
-                    eventElement.textContent = event.title; // Display the event title
+                    eventElement.textContent = event.title;
                     dayElement.appendChild(eventElement);
 
-                    // Attach click event to open event details (both event box and title)
                     eventElement.addEventListener('click', () => openModal(event));
                 }
             });
 
-            // Append day element to the calendar
+            // Highlight the specified date if provided
+            if (highlightDate && 
+                currentDay.getDate() === highlightDate.getDate() &&
+                currentDay.getMonth() === highlightDate.getMonth() &&
+                currentDay.getFullYear() === highlightDate.getFullYear()
+            ) {
+                dayElement.classList.add('highlighted');
+            }
+
             calendarElement.appendChild(dayElement);
         }
     }
@@ -103,22 +99,19 @@ document.addEventListener('DOMContentLoaded', function () {
         modalTitle.textContent = event.title;
         modalDescription.textContent = event.description;
         modalDate.textContent = `Date: ${event.date}`;
-        modal.style.display = 'block'; // Show the modal
+        modal.style.display = 'block';
     }
 
-    // Event listener for closing the modal
     closeModalButton.addEventListener('click', () => {
-        modal.style.display = 'none'; // Hide the modal when clicking the close button
+        modal.style.display = 'none';
     });
 
-    // Event listener for clicking outside the modal to close it
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
-            modal.style.display = 'none'; // Close modal when clicking outside
+            modal.style.display = 'none';
         }
     });
 
-    // Event listeners for navigation buttons
     prevMonthButton.addEventListener('click', () => {
         currentDate.setMonth(currentDate.getMonth() - 1);
         renderCalendar(currentDate);
@@ -129,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
         renderCalendar(currentDate);
     });
 
-    // Event listener for jumping to a specific month and year
     jumpButton.addEventListener('click', () => {
         const selectedMonth = parseInt(monthSelector.value, 10);
         const selectedYear = parseInt(yearSelector.value, 10);
@@ -138,9 +130,22 @@ document.addEventListener('DOMContentLoaded', function () {
         renderCalendar(currentDate);
     });
 
+    // Function to handle redirection date highlighting
+    function handleRedirectHighlighting() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectDate = urlParams.get('date');
+        if (redirectDate) {
+            const eventDate = new Date(redirectDate);
+            currentDate.setMonth(eventDate.getMonth());
+            currentDate.setFullYear(eventDate.getFullYear());
+            renderCalendar(currentDate, eventDate);
+        } else {
+            renderCalendar(currentDate);
+        }
+    }
+
     // Initialize the dropdowns
     function populateSelectors() {
-        // Populate month dropdown
         const monthNames = [...Array(12).keys()].map(month =>
             new Date(0, month).toLocaleString('mr-IN', { month: 'long' })
         );
@@ -151,7 +156,6 @@ document.addEventListener('DOMContentLoaded', function () {
             monthSelector.appendChild(option);
         });
 
-        // Populate year dropdown (e.g., from 2020 to 2030)
         for (let year = 2020; year <= 2030; year++) {
             const option = document.createElement('option');
             option.value = year;
@@ -160,7 +164,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Initial setup
     populateSelectors();
-    renderCalendar(currentDate);
+    handleRedirectHighlighting();
 });

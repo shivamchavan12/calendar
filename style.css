@@ -132,15 +132,18 @@ nav a:hover {
 @media (max-width: 768px) {
     #timeline-container {
         padding: 20px 10px;
-    }
-
-    .timeline-item {
-        width: 90%; /* Center the items horizontally */
-        margin: 10px auto; /* Ensure proper spacing */
         position: relative;
     }
 
+    .timeline-item {
+        width: 90%; /* Ensure proper width */
+        margin: 20px auto; /* Center items horizontally */
+        position: relative;
+        padding-left: 30px; /* Space for left-aligned dots */
+    }
+
     .timeline-item::before {
+        content: "";
         width: 16px;
         height: 16px;
         border-radius: 50%;
@@ -149,21 +152,29 @@ nav a:hover {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        z-index: 1; /* Ensure the dot is on top of other elements */
+        z-index: 1; /* Keep dots above content */
     }
 
+    /* Alternate dots: Left side for odd items */
     .timeline-item:nth-child(odd)::before {
-        left: -12px; /* Align dots to the left for odd items */
+        left: -10px; /* Position dot to the left */
     }
 
+    /* Alternate dots: Right side for even items */
     .timeline-item:nth-child(even)::before {
-        right: -12px; /* Align dots to the right for even items */
+        left: auto; /* Reset left alignment */
+        right: -10px; /* Position dot to the right */
     }
 
-    .timeline-item::after {
-        display: none; /* Remove the connecting line */
+    /* Optional: Adjust content alignment for even items */
+    .timeline-item:nth-child(even) {
+        padding-left: 0; /* Remove left padding */
+        padding-right: 30px; /* Add space for right-aligned dots */
+        text-align: right; /* Align text to the right */
     }
 }
+
+
 
 
 /* Calendar Section */
@@ -220,7 +231,15 @@ nav a:hover {
     background: #ffebee;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
-
+.day.highlighted {
+    background-color: #ffcc00; /* Yellow background for highlighted day */
+    color: white;  /* White text for highlighted day */
+    border: 2px solid #e64a19; /* Optional: adds a red border around the highlighted day */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle glow around the highlighted day */
+}
+.day.highlighted:hover {
+    background-color: #ffb300; /* Darker yellow on hover for the highlighted day */
+}
 .event {
     background: #ff5722;              /* Green background for the event */
     color: white;                     /* White text color */
@@ -275,8 +294,18 @@ nav a:hover {
         position: relative;
         height: 80px; /* Fixed height for consistency */
     }
+    .day.highlighted {
+        font-size: 14px; /* Adjust font size for smaller screens */
+        padding: 8px; /* Add some padding to make it more touch-friendly */
+        border-width: 1px; /* Thinner border for mobile */
+        background-color: #ffeb3b; /* Add a background color to highlight */
+        color: #000; /* Change text color to stand out */
+    }
 
-    /* Fix issue with Tuesday being larger */
+    /* Adjust hover effects for touch devices */
+    .day.highlighted:hover {
+        background-color: #ffb300; /* Keep same hover effect */
+    }
     .calendar .day:nth-child(7) {
         /* Ensure that all days are the same size */
         height: 80px;
@@ -288,7 +317,7 @@ nav a:hover {
 
     .calendar .day.active {
         background-color: #ff7043;
-        color: white;
+        color: rgb(255, 255, 255);
     }
 
     /* Make sure events are properly positioned inside the day box */
@@ -298,7 +327,7 @@ nav a:hover {
         left: 50%;
         transform: translateX(-50%);
         background-color: #ff5722;
-        color: white;
+        color: rgb(255, 255, 255);
         font-size: 12px;
         padding: 3px 6px;
         border-radius: 4px;

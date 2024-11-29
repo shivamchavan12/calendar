@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Add an event listener to the timeline item for redirection
         timelineItem.addEventListener('click', function () {
-            // Redirect to the calendar page with the specific date
+            // Redirect to the calendar page with the specific event date
             const eventDate = new Date(event.date);
             const redirectTo = `calendar.html?date=${eventDate.toISOString().split('T')[0]}`; // Pass the date in YYYY-MM-DD format
             window.location.href = redirectTo;  // Redirect to the calendar page
